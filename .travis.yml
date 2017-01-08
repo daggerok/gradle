@@ -1,0 +1,15 @@
+language: java
+jdk: oraclejdk8
+install: true
+env:
+  SPRING_PROFILES_ACTIVE: default
+script:
+  - gradle clean run
+  - gradle clean runJar
+before_cache:
+  - rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache.directories:
+  - $HOME/.m2/
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
