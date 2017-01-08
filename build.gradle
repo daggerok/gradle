@@ -3,7 +3,7 @@ plugins {
   id 'idea'
 }
 
-sourceCompatibility = '1.8'
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 ext {
   taskGroup = 'Progect specific'
@@ -30,10 +30,9 @@ dependencies {
 }
 
 task run(type: JavaExec, dependsOn: classes) {
-  // default task:
   group taskGroup
   description 'run main class'
-  // JavaExec task:
+
   main = mainClassName
   classpath = sourceSets.main.runtimeClasspath
   args 'this', 'is', 'run', 'task'
@@ -44,7 +43,7 @@ task runJar(type: Exec, dependsOn: jar) {
   executable 'java'
   args '-jar', "$jar.archivePath", 'this', 'is', 'runJar', 'task'
 
-  // defaul task props:
+  // default task props:
   description 'run built jar'
   group taskGroup
 }
